@@ -11,7 +11,7 @@ A Conrad Challenge entry (Health & Nutrition category).
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Prototype: PyTorch](https://img.shields.io/badge/prototype-PyTorch-orange.svg)](prototype/)
-[![Demo: on-device AI](https://img.shields.io/badge/demo-on--device%20AI-16a34a.svg)](demo/)
+[![Demo: on-device AI](https://img.shields.io/badge/demo-on--device%20AI-16a34a.svg)](docs/demo/)
 
 ---
 
@@ -98,7 +98,7 @@ just "did the knee bend far enough."
 | Different exercises (bridge vs squat, negative control) | **0.0 / 100** |
 | Augmented-pair classification accuracy (20 clips, 12 movements) | **94.2%** |
 
-The [live demo](demo/) brings the same idea to the browser with real-time
+The [live demo](https://pumaduma.github.io/RehabLens/demo/) brings the same idea to the browser with real-time
 MediaPipe pose tracking, digital goniometry, rep counting, and form scoring —
 all processed **on-device, with no video leaving the phone**.
 
@@ -106,10 +106,12 @@ all processed **on-device, with no video leaving the phone**.
 
 **Option A — live demo (no install):** the demo runs entirely in your browser.
 
-1. Enable GitHub Pages on this repo (`Settings → Pages → Deploy from a branch`,
-   select the `main` branch and the `/demo` folder), or
-2. Simply open [`demo/index.html`](demo/index.html) on your computer or phone,
-   allow camera access, pick an exercise, and move.
+1. Open the hosted demo at
+   **[pumaduma.github.io/RehabLens/demo](https://pumaduma.github.io/RehabLens/demo/)** —
+   allow camera access, pick an exercise, and move, or
+2. Open [`docs/demo/index.html`](docs/demo/index.html) locally on your computer
+   or phone (camera access needs `https://` or `localhost`, so the hosted
+   version is recommended).
 
 **Option B — research prototype (Python):** the full YOLO Pose + Siamese LSTM
 pipeline that produces the scores above.
@@ -130,7 +132,7 @@ See [`prototype/README.md`](prototype/README.md) and
 | Path | What's inside |
 |---|---|
 | [`docs/`](docs/) | Competition documents: Innovation Brief, business plan, market research, safety case, ethics, roadmap |
-| [`demo/`](demo/) | Browser demo — real-time pose tracking, goniometry, rep counting, movement scoring (on-device) |
+| [`docs/demo/`](docs/demo/) | Browser demo — real-time pose tracking, goniometry, rep counting, movement scoring (on-device) |
 | [`prototype/`](prototype/) | Research pipeline — YOLO Pose → joint angles → Siamese LSTM movement scorer (PyTorch) |
 | [`dataset/`](dataset/) | Reference exercise clips, manifests, and raw data with licences and consent notes |
 | [`pitch/`](pitch/) | Pitch deck and presentation assets |

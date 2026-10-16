@@ -8,7 +8,7 @@ page maps each gate to files in this repository so nothing gets written twice.*
 
 | Criterion | Weight | Where we earn it |
 |---|---|---|
-| Innovation | 30% | Sequence-aware LSTM scoring — see [`../prototype/`](../prototype/), [`../demo/`](../demo/), and Innovation Brief Q3–Q4 |
+| Innovation | 30% | Sequence-aware LSTM scoring — see [`../prototype/`](../prototype/), [`./demo/`](./demo/), and Innovation Brief Q3–Q4 |
 | Storytelling | 20% | The Maria story in [`../README.md`](../README.md) and Brief Q2; 90-second video script below |
 | Practicality | 20% | Zero hardware, on-device privacy, fail-soft feedback — Brief Q3, Q9; [`clinical-safety.md`](clinical-safety.md) |
 | Marketing | 20% | B2B2C clinic subscription + RTM reimbursement hook — Brief Q6–Q7; [`business-plan.md`](business-plan.md) |

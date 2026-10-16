@@ -39,4 +39,4 @@ safe. See [`../docs/clinical-safety.md`](../docs/clinical-safety.md) for the
 full safety case and validation plan.
 
 *Project home: [`../README.md`](../README.md) · Live browser demo:
-[`../demo/`](../demo/)*
+[`../docs/demo/`](../docs/demo/)*

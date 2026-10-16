@@ -91,7 +91,7 @@ The prototype pipeline ([`prototype/`](../prototype/)) has five stages:
 5. **Explainable output** — side-by-side skeleton video, aligned angle curves
    (dynamic time warping), CSV data, and a plain-language report.
 
-The browser demo ([`demo/`](../demo/)) implements stages 1–2 plus real-time
+The browser demo ([`demo/`](./demo/)) implements stages 1–2 plus real-time
 rep counting, depth feedback, and reference-curve scoring with MediaPipe Pose,
 running 100% on-device.
 

@@ -6,13 +6,14 @@ open on any phone or laptop — no Python, no install.
 
 ## Try it
 
-1. Open [`index.html`](index.html) in a browser, **or** enable GitHub Pages on
-   the repo (`Settings → Pages → Deploy from a branch` → `main` / `/demo`) for
-   a public URL.
-2. Allow camera access (camera needs `https://` or `localhost` — GitHub Pages
-   is ideal).
+1. Open the hosted demo: **[pumaduma.github.io/RehabLens/demo](https://pumaduma.github.io/RehabLens/demo/)** —
+   the simplest path, no install.
+2. Allow camera access (camera needs `https://` or `localhost` — the hosted
+   version provides this).
 3. Pick an exercise, stand side-on so your whole body is visible, and move.
 4. No camera? Use **📁 Try a video** to analyze a local video file.
+   (To run locally instead: serve this folder with any static server and open
+   [`index.html`](index.html).)
 
 ## What it does
 
@@ -40,7 +41,7 @@ Each exercise has a target angle and expected range of motion encoded in
 ## How this relates to the research prototype
 
 The competition's core innovation is the **Siamese bidirectional LSTM** in
-[`../prototype/`](../prototype/), which compares a patient's *entire motion
+[`../../prototype/`](../../prototype/), which compares a patient's *entire motion
 sequence* to an expert reference and scores similarity (bridge-vs-bridge
 99.5/100, bridge-vs-squat 0.0/100, 94.2% augmented-pair accuracy).
 
