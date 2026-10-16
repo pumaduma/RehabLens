@@ -186,7 +186,7 @@ text(s, Inches(0.9), Inches(4.9), Inches(11.5), Inches(0.9),
      "AI form-coach that scores home exercise video against the therapist's expert reference —\n"
      "live, on any phone, with no wearables.", size=19, color=RGBColor(0xCB, 0xD5, 0xE1))
 text(s, Inches(0.9), Inches(6.3), Inches(11.5), Inches(0.6),
-     "Team: [name] · [name] · [name]     Coach: [name]     github.com/alicialiu540-oss/Conrad-project",
+     "Team: [name] · [name] · [name]     Coach: [name]     github.com/pumaduma/RehabLens",
      size=13, color=RGBColor(0x94, 0xA3, 0xB8))
 notes(s, "Open with warmth and confidence. Judges decide in the first 30 seconds whether they care. "
          "Say the tagline slowly — it is the whole product in one sentence.")
@@ -636,7 +636,7 @@ text(s, Inches(0.9), Inches(2.35), Inches(11.5), Inches(0.8),
      "but the camera they already own.", size=20, color=RGBColor(0xCB, 0xD5, 0xE1))
 text(s, Inches(0.9), Inches(3.5), Inches(11.5), Inches(1.2), [
     [("Try the live demo:  ", {"size": 18, "color": RGBColor(0x99, 0xF6, 0xE4)}),
-     ("github.com/alicialiu540-oss/Conrad-project  →  demo/", {"size": 18, "bold": True, "color": WHITE})],
+     ("pumaduma.github.io/RehabLens  (live demo)", {"size": 18, "bold": True, "color": WHITE})],
     [("Prototype: YOLO Pose + Siamese LSTM · 94.2% augmented-pair accuracy · MIT-licensed", {"size": 14, "color": RGBColor(0x94, 0xA3, 0xB8)})],
 ], line_spacing=1.4)
 text(s, Inches(0.9), Inches(5.9), Inches(11.5), Inches(0.7),
