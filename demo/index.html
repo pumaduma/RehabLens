@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RehabLens — AI form coach for physical therapy</title>
+  <meta name="description" content="RehabLens scores your home exercise form against your therapist's expert reference — in real time, on your own device. Conrad Challenge project." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔎</text></svg>" />
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="13" stroke="currentColor" stroke-width="4"/>
+          <line x1="30" y1="30" x2="42" y2="42" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          <path d="M10 20 h20 M14 25 l4 -5 l3 5 l3 -5 l4 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <div>
+          <h1>RehabLens</h1>
+          <p class="tagline">Your physical therapist's eyes at home.</p>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button id="startBtn" class="btn btn-primary" disabled>⏳ Loading AI…</button>
+        <label class="btn btn-ghost" for="fileInput">📁 Try a video</label>
+        <input type="file" id="fileInput" accept="video/*" hidden />
+      </div>
+    </div>
+    <p class="privacy-banner">🔒 Everything runs <strong>on your device</strong>. No video, no landmarks, and no data are ever uploaded.</p>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main>
+    <!-- Left: exercise library -->
+    <aside class="panel library">
+      <h2>Exercise library</h2>
+      <p class="panel-sub">Choose the exercise your therapist prescribed.</p>
+      <div class="exercise-list" id="exerciseList">
+        <button class="exercise-card active" data-exercise="kneeExtension">
+          <span class="ex-icon">🦵</span>
+          <span class="ex-name">Seated Knee Extension</span>
+          <span class="ex-metric">knee angle</span>
+        </button>
+        <button class="exercise-card" data-exercise="sitToStand">
+          <span class="ex-icon">🪑</span>
+          <span class="ex-name">Sit-to-Stand Squat</span>
+          <span class="ex-metric">knee + hip</span>
+        </button>
+        <button class="exercise-card" data-exercise="gluteBridge">
+          <span class="ex-icon">🌉</span>
+          <span class="ex-name">Glute Bridge</span>
+          <span class="ex-metric">hip angle</span>
+        </button>
+        <button class="exercise-card" data-exercise="shoulderFlexion">
+          <span class="ex-icon">🙆</span>
+          <span class="ex-name">Shoulder Flexion</span>
+          <span class="ex-metric">shoulder angle</span>
+        </button>
+        <button class="exercise-card" data-exercise="elbowCurl">
+          <span class="ex-icon">💪</span>
+          <span class="ex-name">Elbow Curl</span>
+          <span class="ex-metric">elbow angle</span>
+        </button>
+      </div>
+      <div class="target-card" id="targetCard">
+        <h3>Target today</h3>
+        <p id="targetText">Straighten your knee from ~90° to under 15°, then lower slowly. 10 reps.</p>
+      </div>
+    </aside>
+
+    <!-- Center: camera + stats -->
+    <section class="panel stage">
+      <div class="video-wrap">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div id="idleState" class="idle-state">
+          <div class="idle-lens">🔎</div>
+          <h3 id="idleTitle">Camera is off</h3>
+          <p id="idleText">Press <strong>Start camera</strong> above, stand side-on to the camera so your whole body is visible, and begin your exercise.</p>
+        </div>
+        <div id="repFlash" class="rep-flash" hidden></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-label">Movement Score</span>
+          <span class="stat-value" id="statScore">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Reps</span>
+          <span class="stat-value" id="statReps">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Angle now</span>
+          <span class="stat-value" id="statAngle">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Range of motion</span>
+          <span class="stat-value" id="statRom">—</span>
+        </div>
+      </div>
+      <div class="cue-bar" id="cueBar">
+        <span class="cue-icon">🎯</span>
+        <span id="cueText">Waiting for movement…</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart" height="90"></canvas>
+        <div class="chart-legend">
+          <span><i class="dot dot-angle"></i> joint angle (°)</span>
+          <span><i class="dot dot-target"></i> target depth</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: session summary -->
+    <aside class="panel summary">
+      <h2>Session report</h2>
+      <p class="panel-sub">What your therapist will see.</p>
+      <div class="report-card">
+        <div class="report-line"><span>Reps completed</span><strong id="sumReps">0</strong></div>
+        <div class="report-line"><span>Average score</span><strong id="sumAvg">—</strong></div>
+        <div class="report-line"><span>Best score</span><strong id="sumBest">—</strong></div>
+        <div class="report-line"><span>Consistency</span><strong id="sumConsistency">—</strong></div>
+        <div class="report-line"><span>Depth quality</span><strong id="sumDepth">—</strong></div>
+      </div>
+      <h3>Coach tips</h3>
+      <ul class="tips" id="tipsList">
+        <li>Stand side-on to the camera.</li>
+        <li>Move at a steady 2–4 seconds per rep.</li>
+        <li>A low score ≠ bad — it means "check with your therapist."</li>
+      </ul>
+      <button id="resetBtn" class="btn btn-ghost btn-block">↺ Reset session</button>
+      <p class="disclaimer">Research prototype. Movement Score measures visible 2D motion similarity — it is <strong>not</strong> a medical device, diagnosis, or proof an exercise is safe. Always follow your therapist's guidance.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <p><strong>RehabLens</strong> · Conrad Challenge · Health &amp; Nutrition · <a href="https://github.com/alicialiu540-oss/Conrad-project">github.com/alicialiu540-oss/Conrad-project</a></p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

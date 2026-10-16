@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Prototype pipeline outputs (large, regenerable)
+prototype/data/processed/
+prototype/data/inbox/
+prototype/outputs/
+prototype/data/*.xlsx
+*.xlsx
+
+# Jupyter / editors
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# Node (in case the demo is later bundled)
+node_modules/
+dist/
+
+# Local secrets
+.env
+.env.*
+!demo/.env.example
